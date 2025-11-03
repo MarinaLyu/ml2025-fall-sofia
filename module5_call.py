@@ -1,17 +1,43 @@
-from module5_mod import NumberSearch
+from module5_mod import NumberProcessor
+
 
 def main():
-    N = int(input("Enter a positive integer N: "))
 
-    searcher = NumberSearch()
+    processor = NumberProcessor()
 
-    for i in range(N):
-        num = int(input(f"Enter number #{i+1}: "))
-        searcher.insert_number(num)
+    # Read N (positive integer)
+    while True:
+        try:
+            n = int(input("Enter a positive integer N: "))
+            if n > 0:
+                break
+            else:
+                print("Please enter a positive integer.")
+        except ValueError:
+            print("Please enter a valid integer.")
 
-    X = int(input("Enter X: "))
-    result = searcher.search(X)
-    print(result)
+    # Read N numbers one by one
+    print(f"Please enter {n} numbers, one by one:")
+    for i in range(n):
+        while True:
+            try:
+                num = float(input(f"Enter number {i + 1}: "))
+                processor.add_number(num)
+                break
+            except ValueError:
+                print("Please enter a valid number.")
+
+    # Read X (integer to search for)
+    while True:
+        try:
+            x = float(input("Enter the number X to search for: "))
+            break
+        except ValueError:
+            print("Please enter a valid number.")
+
+    # Search for X and output result
+    result = processor.search_number(x)
+    print(f"\nResult: {result}")
 
 
 if __name__ == "__main__":
