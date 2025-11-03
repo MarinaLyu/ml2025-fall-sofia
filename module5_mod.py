@@ -1,32 +1,28 @@
-class NumberSearch:
+class NumberProcessor:
+
     def __init__(self):
-        self.data = []
 
-    def insert_number(self, num):
-        self.data.append(num)
+        self.numbers = []
 
-    def search(self, x):
-        if x in self.data:
-            return self.data.index(x) + 1  # index from 1 to N
+    def set_numbers(self, numbers_list):
+
+        self.numbers = numbers_list
+
+    def add_number(self, number):
+
+        self.numbers.append(number)
+
+    def search_number(self, x):
+
+        for i, num in enumerate(self.numbers):
+            if num == x:
+                return i + 1  # Return 1-based index
         return -1
 
+    def get_numbers_count(self):
 
-def main():
-    # Ask for N
-    N = int(input("Enter a positive integer N: "))
+        return len(self.numbers)
 
-    searcher = NumberSearch()
+    def clear_numbers(self):
 
-    # Read N numbers
-    for i in range(N):
-        num = int(input(f"Enter number #{i+1}: "))
-        searcher.insert_number(num)
-
-    # Read X and search
-    X = int(input("Enter X: "))
-    result = searcher.search(X)
-    print(result)
-
-
-if __name__ == "__main__":
-    main()
+        self.numbers = []
